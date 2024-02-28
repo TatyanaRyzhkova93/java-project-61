@@ -6,4 +6,6 @@ public interface Game {
     String getMainQuestion();
     List<String> getCorrectAnswers();
     List<String> getQuestions();
+
+    void runGame();
 }

@@ -10,10 +10,9 @@ import java.util.Random;
 public class Calc implements Game {
     private List<String> correctAnswers;
     private List<String> questions;
-    private final String mainQuestion;
 
     public String getMainQuestion() {
-        return mainQuestion;
+        return "What is the result of the expression?";
     }
     public List<String> getCorrectAnswers() {
         return correctAnswers;
@@ -21,10 +20,9 @@ public class Calc implements Game {
     public List<String> getQuestions() {
         return questions;
     }
-    public Calc() {
+    public void runGame() {
         int maxSizeNumber = 1000;
         Random random = new Random();
-        mainQuestion = "What is the result of the expression?";
         ArrayList<String> operands = new ArrayList<>(Arrays.asList("+", "-", "*"));
         questions = new ArrayList<>();
         correctAnswers = new ArrayList<>();

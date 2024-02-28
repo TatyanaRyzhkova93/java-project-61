@@ -9,10 +9,9 @@ import java.util.Random;
 public class GCD implements Game {
     private List<String> correctAnswers;
     private List<String> questions;
-    private final String mainQuestion;
 
     public String getMainQuestion() {
-        return mainQuestion;
+        return "Find the greatest common divisor of given numbers.";
     }
     public List<String> getCorrectAnswers() {
         return correctAnswers;
@@ -20,10 +19,9 @@ public class GCD implements Game {
     public List<String> getQuestions() {
         return questions;
     }
-    public GCD() {
+    public void runGame() {
         int maxSizeNumber = 100;
         Random random = new Random();
-        mainQuestion = "Find the greatest common divisor of given numbers.";
         questions = new ArrayList<>();
         correctAnswers = new ArrayList<>();
         for (int i = 0; i < Engine.COUNT_CORRECT_ANSWERS; i++) {
