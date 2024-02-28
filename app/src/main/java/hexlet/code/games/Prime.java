@@ -10,7 +10,7 @@ public class Prime implements Game {
     private List<String> correctAnswers = new ArrayList<>();
     private List<String> questions = new ArrayList<>();
     public String getMainQuestion() {
-        return "What number is missing in the progression?";
+        return "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     }
 
     public List<String> getCorrectAnswers() {
