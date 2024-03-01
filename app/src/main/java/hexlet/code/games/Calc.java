@@ -7,29 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Calc implements Game {
-    private List<String> correctAnswers;
-    private List<String> questions;
-
-    public String getMainQuestion() {
-        return "What is the result of the expression?";
-    }
-    public List<String> getCorrectAnswers() {
-        return correctAnswers;
-    }
-    public List<String> getQuestions() {
-        return questions;
-    }
-    public void runGame() {
-        int maxSizeNumber = 1000;
+public class Calc {
+    private static final Integer MAX_SIZE_NUMBER = 1001;
+    public static void runGame() {
         Random random = new Random();
         ArrayList<String> operands = new ArrayList<>(Arrays.asList("+", "-", "*"));
-        questions = new ArrayList<>();
-        correctAnswers = new ArrayList<>();
+        List<String> questions = new ArrayList<>();
+        List<String> correctAnswers = new ArrayList<>();
         for (int i = 0; i < Engine.COUNT_CORRECT_ANSWERS; i++) {
             int indexOperand = random.nextInt(operands.size());
-            int randomNumber = random.nextInt(maxSizeNumber + 1);
-            int randomNumber2 = random.nextInt(maxSizeNumber + 1);
+            int randomNumber = random.nextInt(MAX_SIZE_NUMBER);
+            int randomNumber2 = random.nextInt(MAX_SIZE_NUMBER);
             int correctAnswer = switch (operands.get(indexOperand)) {
                 case "+" -> randomNumber + randomNumber2;
                 case "-" -> randomNumber - randomNumber2;
@@ -39,5 +27,7 @@ public class Calc implements Game {
             correctAnswers.add(String.valueOf(correctAnswer));
             questions.add(randomNumber + " " + operands.get(indexOperand) + " " + randomNumber2);
         }
+        String mainQuestion = "What is the result of the expression?";
+        Engine.runGame(correctAnswers, questions, mainQuestion);
     }
 }

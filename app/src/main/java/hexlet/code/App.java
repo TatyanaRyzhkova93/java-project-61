@@ -1,5 +1,11 @@
 package hexlet.code;
 
+import hexlet.code.games.GCD;
+import hexlet.code.games.Calc;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
+import hexlet.code.games.Even;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,13 +27,21 @@ public class App {
         System.out.print("Your choice: ");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
-        if (choice == 0) {
-            scanner.close();
-            return;
-        }
         if (!games.get(choice).isEmpty()) {
-            Engine engine = new Engine(games.get(choice));
-            engine.runGame();
+            switch (games.get(choice)) {
+                case "Greet" : Engine.helloUser(); break;
+                case "Even" :
+                    Even.runGame(); break;
+                case "Calc" :
+                    Calc.runGame(); break;
+                case "GCD" :
+                    GCD.runGame(); break;
+                case "Progression" :
+                    Progression.runGame(); break;
+                case "Prime" :
+                    Prime.runGame(); break;
+                default: break;
+            }
         }
         scanner.close();
     }

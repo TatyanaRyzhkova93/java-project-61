@@ -6,28 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Progression implements Game {
-    private List<String> correctAnswers = new ArrayList<>();
-    private List<String> questions = new ArrayList<>();
+public class Progression {
+
     private static final int SIZE_SUBSEQUENCE = 10;
 
-    public String getMainQuestion() {
-        return "What number is missing in the progression?";
-    }
-
-    public List<String> getCorrectAnswers() {
-        return correctAnswers;
-    }
-
-    public List<String> getQuestions() {
-        return questions;
-    }
-
-    public void runGame() {
+    public static void runGame() {
         int maxSizeNumber = 10;
         Random random = new Random();
-        questions = new ArrayList<>();
-        correctAnswers = new ArrayList<>();
+        List<String> questions = new ArrayList<>();
+        List<String> correctAnswers = new ArrayList<>();
         for (int i = 0; i < Engine.COUNT_CORRECT_ANSWERS; i++) {
             List<String> subsequence = new ArrayList<>(SIZE_SUBSEQUENCE);
             int randomNumber = random.nextInt(maxSizeNumber + 1);
@@ -41,5 +28,7 @@ public class Progression implements Game {
             subsequence.set(indexDelete, "..");
             questions.add(String.join(" ", subsequence));
         }
+        String mainQuestion = "What number is missing in the progression?";
+        Engine.runGame(correctAnswers, questions, mainQuestion);
     }
 }
