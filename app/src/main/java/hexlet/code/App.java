@@ -12,14 +12,11 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        String[] gamesNames = {"Exit", "Greet", "Even", "Calc", "GCD", "Progression", "Prime"};
         Map<Integer, String> games = new HashMap<Integer, String>();
-        games.put(1, "Greet");
-        games.put(2, "Even");
-        games.put(3, "Calc");
-        games.put(0, "Exit");
-        games.put(4, "GCD");
-        games.put(5, "Progression");
-        games.put(6, "Prime");
+        for (int i = 0; i < gamesNames.length; i++) {
+            games.put(i, gamesNames[i]);
+        }
         System.out.println("Please enter the game number and press Enter.");
         games.entrySet().stream().skip(1).forEach(e -> System.out.println(e.getKey() + " - " + e.getValue()));
         Map.Entry<Integer, String> entry = games.entrySet().stream().findFirst().get();

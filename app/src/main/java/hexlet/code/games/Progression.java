@@ -9,16 +9,16 @@ import java.util.Random;
 public class Progression {
 
     private static final int SIZE_SUBSEQUENCE = 10;
+    private static final Integer MAX_SIZE_NUMBER = 11;
 
     public static void runGame() {
-        int maxSizeNumber = 10;
         Random random = new Random();
         List<String> questions = new ArrayList<>();
         List<String> correctAnswers = new ArrayList<>();
         for (int i = 0; i < Engine.COUNT_CORRECT_ANSWERS; i++) {
             List<String> subsequence = new ArrayList<>(SIZE_SUBSEQUENCE);
-            int randomNumber = random.nextInt(maxSizeNumber + 1);
-            int difference = random.nextInt(maxSizeNumber + 1);
+            int randomNumber = random.nextInt(MAX_SIZE_NUMBER);
+            int difference = random.nextInt(MAX_SIZE_NUMBER);
             int indexDelete = random.nextInt(SIZE_SUBSEQUENCE);
             subsequence.add(String.valueOf(randomNumber));
             for (int j = 1; j < SIZE_SUBSEQUENCE; j++) {
