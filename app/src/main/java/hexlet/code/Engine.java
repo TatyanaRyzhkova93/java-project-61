@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.AbstractMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,13 +8,14 @@ public class Engine {
     public static final int COUNT_CORRECT_ANSWERS = 3;
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void runGame(List<String> correctAnswers, List<String> questions, String mainQuestion) {
+    public static void runGame(List<AbstractMap.SimpleImmutableEntry<String, String>> questionAnswer,
+                               String mainQuestion) {
         String name = helloUser();
         int countCorrectAnswer = 0;
         System.out.println(mainQuestion);
-        while (countCorrectAnswer < COUNT_CORRECT_ANSWERS && questions.size() == correctAnswers.size()) {
-            for (int i = 0; i < questions.size(); i++) {
-                if (equalsAnswers(name, correctAnswers.get(i), questions.get(i))) {
+        while (countCorrectAnswer < COUNT_CORRECT_ANSWERS) {
+            for (int i = 0; i < questionAnswer.size(); i++) {
+                if (equalsAnswers(name, questionAnswer.get(i).getValue(), questionAnswer.get(i).getKey())) {
                     countCorrectAnswer++;
                 } else {
                     return;

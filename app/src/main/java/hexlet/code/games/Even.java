@@ -1,28 +1,31 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Even {
+    private static final int MIN = -1000;
+    private static final int MAX = 1000;
     public static void runGame() {
-        int randomNumber;
-        List<String> correctAnswers = new ArrayList<>();
-        List<String> questions = new ArrayList<>();
+        List<AbstractMap.SimpleImmutableEntry<String, String>> questionAnswer = new ArrayList<>();
         for (int i = 0; i < Engine.COUNT_CORRECT_ANSWERS; i++) {
-            randomNumber = ThreadLocalRandom.current().nextInt();
-            String correctAnswer;
-            if (randomNumber % 2 == 1 || randomNumber % 2 == -1) {
-                correctAnswer = "no";
-            } else {
+            int randomNumber = Utils.getRandomInt(MIN, MAX);
+            String correctAnswer = "no";
+            if (isEven(randomNumber)) {
                 correctAnswer = "yes";
             }
-            questions.add(String.valueOf(randomNumber));
-            correctAnswers.add(correctAnswer);
+            AbstractMap.SimpleImmutableEntry<String, String> pair =
+                    new AbstractMap.SimpleImmutableEntry<>(String.valueOf(randomNumber), correctAnswer);
+            questionAnswer.add(pair);
         }
         String mainQuestion = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-        Engine.runGame(correctAnswers, questions, mainQuestion);
+        Engine.runGame(questionAnswer, mainQuestion);
+    }
+    private static boolean isEven(int number) {
+        return number % 2 != 1 && number % 2 != -1;
     }
 }

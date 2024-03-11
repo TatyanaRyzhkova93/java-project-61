@@ -1,10 +1,11 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Progression {
 
@@ -12,23 +13,26 @@ public class Progression {
     private static final Integer MAX_SIZE_NUMBER = 11;
 
     public static void runGame() {
-        Random random = new Random();
-        List<String> questions = new ArrayList<>();
-        List<String> correctAnswers = new ArrayList<>();
+        List<AbstractMap.SimpleImmutableEntry<String, String>> questionAnswer = new ArrayList<>();
         for (int i = 0; i < Engine.COUNT_CORRECT_ANSWERS; i++) {
-            List<String> subsequence = new ArrayList<>(SIZE_SUBSEQUENCE);
-            int randomNumber = random.nextInt(MAX_SIZE_NUMBER);
-            int difference = random.nextInt(MAX_SIZE_NUMBER);
-            int indexDelete = random.nextInt(SIZE_SUBSEQUENCE);
-            subsequence.add(String.valueOf(randomNumber));
-            for (int j = 1; j < SIZE_SUBSEQUENCE; j++) {
-                subsequence.add(String.valueOf(Integer.parseInt(subsequence.get(j - 1)) + difference));
-            }
-            correctAnswers.add(subsequence.get(indexDelete));
+            int randomNumber = Utils.getRandomInt(MAX_SIZE_NUMBER);
+            int difference = Utils.getRandomInt(MAX_SIZE_NUMBER);
+            int indexDelete = Utils.getRandomInt(SIZE_SUBSEQUENCE);
+            List<String> subsequence = generateSubsequence(randomNumber, difference);
             subsequence.set(indexDelete, "..");
-            questions.add(String.join(" ", subsequence));
+            AbstractMap.SimpleImmutableEntry<String, String> pair =
+                    new AbstractMap.SimpleImmutableEntry<>(String.join(" ", subsequence), subsequence.get(indexDelete));
+            questionAnswer.add(pair);
         }
         String mainQuestion = "What number is missing in the progression?";
-        Engine.runGame(correctAnswers, questions, mainQuestion);
+        Engine.runGame(questionAnswer, mainQuestion);
+    }
+    private static List<String> generateSubsequence(int min, int difference) {
+        List<String> subsequence = new ArrayList<>(SIZE_SUBSEQUENCE);
+        subsequence.add(String.valueOf(min));
+        for (int j = 1; j < SIZE_SUBSEQUENCE; j++) {
+            subsequence.add(String.valueOf(Integer.parseInt(subsequence.get(j - 1)) + difference));
+        }
+        return subsequence;
     }
 }
