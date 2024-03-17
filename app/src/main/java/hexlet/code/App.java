@@ -12,13 +12,11 @@ import java.util.LinkedHashMap;
 
 public class App {
     public static void main(String[] args) {
+        String[] nameGame = {"Greet", "Even", "Calc", "GCD", "Progression", "Prime"};
         Map<Integer, String> games = new LinkedHashMap<>();
-        games.put(1, "Greet");
-        games.put(2, "Even");
-        games.put(3, "Calc");
-        games.put(4, "GCD");
-        games.put(5, "Progression");
-        games.put(6, "Prime");
+        for (int i = 1; i < nameGame.length; i++) {
+            games.put(i, nameGame[i]);
+        }
         games.put(0, "Exit");
         System.out.println("Please enter the game number and press Enter.");
         for (Map.Entry<Integer, String>
