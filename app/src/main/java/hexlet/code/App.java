@@ -14,7 +14,7 @@ public class App {
     public static void main(String[] args) {
         String[] nameGame = {"Greet", "Even", "Calc", "GCD", "Progression", "Prime"};
         Map<Integer, String> games = new LinkedHashMap<>();
-        for (int i = 1; i < nameGame.length; i++) {
+        for (int i = 1; i <= nameGame.length; i++) {
             games.put(i, nameGame[i - 1]);
         }
         games.put(0, "Exit");
