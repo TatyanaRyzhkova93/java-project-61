@@ -16,7 +16,7 @@ public class Progression {
         for (int i = 0; i < Engine.COUNT_CORRECT_ANSWERS; i++) {
             int randomNumber = Utils.getRandomInt(MAX_SIZE_NUMBER);
             int difference = Utils.getRandomInt(MAX_SIZE_NUMBER);
-            int indexDelete = Utils.getRandomInt(SIZE_SUBSEQUENCE);
+            int indexDelete = Utils.getRandomInt(SIZE_SUBSEQUENCE - 1);
             List<String> subsequence = generateSubsequence(randomNumber, difference, SIZE_SUBSEQUENCE);
             subsequence.set(indexDelete, "..");
             questionAnswer[i][0] = String.join(" ", subsequence);
