@@ -6,21 +6,25 @@ import hexlet.code.games.Prime;
 import hexlet.code.games.Progression;
 import hexlet.code.games.Even;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.LinkedHashMap;
 
 public class App {
     public static void main(String[] args) {
-        String[] gamesNames = {"Exit", "Greet", "Even", "Calc", "GCD", "Progression", "Prime"};
-        Map<Integer, String> games = new HashMap<Integer, String>();
-        for (int i = 0; i < gamesNames.length; i++) {
-            games.put(i, gamesNames[i]);
-        }
+        Map<Integer, String> games = new LinkedHashMap<>();
+        games.put(1, "Greet");
+        games.put(2, "Even");
+        games.put(3, "Calc");
+        games.put(4, "GCD");
+        games.put(5, "Progression");
+        games.put(6, "Prime");
+        games.put(0, "Exit");
         System.out.println("Please enter the game number and press Enter.");
-        games.entrySet().stream().skip(1).forEach(e -> System.out.println(e.getKey() + " - " + e.getValue()));
-        Map.Entry<Integer, String> entry = games.entrySet().stream().findFirst().get();
-        System.out.println(entry.getKey() + " - " + entry.getValue());
+        for (Map.Entry<Integer, String>
+                entry : games.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
         System.out.print("Your choice: ");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();

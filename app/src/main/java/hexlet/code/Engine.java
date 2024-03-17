@@ -1,21 +1,20 @@
 package hexlet.code;
 
-import java.util.AbstractMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class Engine {
     public static final int COUNT_CORRECT_ANSWERS = 3;
+    public static final int PAIR_LEN = 3;
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void runGame(List<AbstractMap.SimpleImmutableEntry<String, String>> questionAnswer,
+    public static void runGame(String[][] questionAnswer,
                                String mainQuestion) {
         String name = helloUser();
         int countCorrectAnswer = 0;
         System.out.println(mainQuestion);
         while (countCorrectAnswer < COUNT_CORRECT_ANSWERS) {
-            for (int i = 0; i < questionAnswer.size(); i++) {
-                if (equalsAnswers(name, questionAnswer.get(i).getValue(), questionAnswer.get(i).getKey())) {
+            for (int i = 0; i < questionAnswer.length; i++) {
+                if (equalsAnswers(name, questionAnswer[i][1], questionAnswer[i][0])) {
                     countCorrectAnswer++;
                 } else {
                     return;
